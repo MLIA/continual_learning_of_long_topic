@@ -1,0 +1,17 @@
+{
+    "data_folder_path": "$DATA_FOLDER/CPD/total_data",
+    "topics_folder_path": ["$DATA_FOLDER/CPD/data/MSMarco-task-clustering-19-0.7-0.5/new_split"],
+    "rerank_path":"dev-bm25_top_1000.tsv",
+    "patience":5,
+    "end_eval": ["all"],
+    "log_folder": "$XP_FOLDER/19",
+    "task_perm_seed": 42,
+    "lr":2e-5,
+    "n_epoch": 10,
+    "batch_size":4,
+    "pretrained_name":"t5-small",
+    "nb_init_task": 2,
+    "dataset": "all",
+    "seed":42,
+    "nb_evaluated_task": 2
+}

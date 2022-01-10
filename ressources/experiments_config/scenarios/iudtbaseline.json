@@ -1,0 +1,18 @@
+{
+    "data_folder_path": "$DATA_FOLDER/CPD/total_data",
+    "topics_folder_path": ["$DATA_FOLDER/CPD/data/MSMarco-task-clustering-74-0.75-0.55/new_split"],
+    "rerank_path":"dev-bm25_top_1000.tsv",
+    "patience":10,
+    "ranking_examples":[1],
+    "log_folder": "$XP_FOLDER/scenario/",
+    "task_perm_seed": -1,
+    "lr":2e-5,
+    "n_epoch": 40,
+    "batch_size":8,
+    "pretrained_name":"t5-base",
+    "nb_init_task": 5,
+    "dataset": "scenario_iudtbaseline",
+    "seed":43,
+    "nb_evaluated_task": 3,
+    "model": "MONOT5"
+}
