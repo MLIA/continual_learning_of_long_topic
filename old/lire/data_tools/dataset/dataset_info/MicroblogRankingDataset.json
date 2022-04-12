@@ -1,0 +1,20 @@
+{
+    "download": {
+        "common": {
+            "qrels2013": "https://trec.nist.gov/data/microblog/2013/qrels.txt",
+            "queries2013": "https://trec.nist.gov/data/microblog/2013/topics.MB111-170.txt",
+            "qrels2014": "https://trec.nist.gov/data/microblog/2014/qrels2014.txt",
+            "queries2014": "https://trec.nist.gov/data/microblog/2014/topics.MB171-225.txt",
+            "qrels2015": "https://trec.nist.gov/data/microblog/2015/qrels.txt",
+            "queries2015":"https://trec.nist.gov/data/microblog/2015/TREC2015-MB-testtopics.txt"
+        }
+    },
+    "folder": {
+        "foldername": "Microblog"
+    },
+    "information": {
+        "repository link": "https://trec.nist.gov/data/microblog.html"
+    }
+    
+}
+

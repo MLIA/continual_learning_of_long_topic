@@ -1,0 +1,26 @@
+{
+    "download": {
+        "common": {
+            "documents": "https://msmarco.blob.core.windows.net/msmarcoranking/collection.tar.gz",
+            "hdf5-data": "https://webia.lip6.fr/~gerald/lire_data/data-small.hdf5",
+            "queries": "https://msmarco.blob.core.windows.net/msmarcoranking/queries.tar.gz"
+        },
+        "dev": {
+            "dev-qrels": "https://msmarco.blob.core.windows.net/msmarcoranking/qrels.dev.tsv",
+            "dev-topics": "https://webia.lip6.fr/~gerald/lire_data/msmarco_topics_cleaned_dev_stsb-roberta-large.json"
+        },
+        "eval": {
+            "eval-topics": "https://webia.lip6.fr/~gerald/lire_data/msmarco_topics_cleaned_train_stsb-roberta-large.json"
+        },
+        "train": {
+            "train-qrels": "https://msmarco.blob.core.windows.net/msmarcoranking/qrels.train.tsv",
+            "train-topics": "https://webia.lip6.fr/~gerald/lire_data/msmarco_topics_cleaned_train_stsb-roberta-large.json"
+        }
+    },
+    "folder": {
+        "foldername": "MSMarcoPassageRankingDataset"
+    },
+    "information": {
+        "repository link": "https://github.com/microsoft/MSMARCO-Passage-Ranking"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "download": {
+        "common": {
+            "documents": "https://msmarco.blob.core.windows.net/msmarcoranking/collection.tar.gz",
+            "queries": "https://msmarco.blob.core.windows.net/msmarcoranking/queries.tar.gz"
+        },
+        "dev": {
+            "dev-qrels": "https://msmarco.blob.core.windows.net/msmarcoranking/qrels.dev.tsv"
+        },
+        "train": {
+            "train-qrels": "https://msmarco.blob.core.windows.net/msmarcoranking/qrels.train.tsv",
+            "train_positive_negative": "https://macavaney.us/misc/qidpidtriples.train.full.tar.gz"
+        }
+    },
+    "folder": {
+        "foldername": "MSMarcoPassageRankingDataset"
+    },
+    "information": {
+        "repository link": "https://github.com/microsoft/MSMARCO-Passage-Ranking"
+    }
+}

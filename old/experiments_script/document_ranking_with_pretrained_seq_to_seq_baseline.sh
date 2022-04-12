@@ -1,0 +1,1 @@
+python experiments/seq_to_seq_baseline/document_ranking_with_pretrained_seq_to_seq_baseline.py --data-folder /net/pascal/gerald/CPD/data --model-storage-folder /local/gerald/CPD/saved_models/ --batch-size 16 --devices 0 --max-iter 5000 --subset-size 5000000

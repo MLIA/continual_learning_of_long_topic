@@ -1,0 +1,23 @@
+{
+    "download": {
+        "common": {
+            "documents": "https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docs.tsv.gz"
+        },
+        "dev": {
+            "dev-qrels": "https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docdev-qrels.tsv.gz",
+            "dev-queries": "https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docdev-queries.tsv.gz",
+            "dev-top100": "https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docdev-top100.gz"
+        },
+        "train": {
+            "train-qrels": "https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-doctrain-qrels.tsv.gz",
+            "train-queries": "https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-doctrain-queries.tsv.gz",
+            "train-top100": "https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-doctrain-top100.gz"
+        }
+    },
+    "folder": {
+        "foldername": "MSMarcoPassageRankingDataset"
+    },
+    "information": {
+        "repository link": "https://github.com/microsoft/MSMARCO-Document-Ranking"
+    }
+}
