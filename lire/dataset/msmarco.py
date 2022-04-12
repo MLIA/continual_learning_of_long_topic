@@ -200,7 +200,7 @@ class MSMarcoRankingDataset(MSMarcoBaseDataset):
     def __init__(self, topics_folder_path, 
                  load_triplets=True, seed=42, 
                  data_folder='$DATA_FOLDER/lire/MSMarcoRanking', 
-                 randomize=False, **args):
+                 randomize=False, bm25_compute=False, **args):
         super().__init__(load_triplets=False, data_folder=data_folder, seed=seed)
         self.data = {}
         str_hash = '' 
@@ -245,23 +245,23 @@ class MSMarcoRankingDataset(MSMarcoBaseDataset):
                     if i % 1000000 == 0:
                         print(i, 'docpairs processed')
                 df = pd.DataFrame.from_dict(doc_pair_dict).to_csv(data_filename, index=False, sep='\t')
-            print("loadind triplet")
+            print("loading triplet")
             self.triplets_collection = pd.read_csv(data_filename, sep='\t', index_col='query_id').groupby('query_id')
-        # creating or loading the bm25 relevant documents with by default top100 for val and top1000 for test
+       # creating or loading the bm25 relevant documents with by default top1000 for val and top1000 for test
         queries_test_collection = self.queries_collection.loc[[query for topic in self.data['test'] for query in topic]]
         queries_val_collection = self.queries_collection.loc[[query for topic in self.data['val'] for query in topic]]
         
         os.makedirs(os.path.join(self.data_folder, 'bm25_test'))
         os.makedirs(os.path.join(self.data_folder, 'bm25_val'))
-        os.makedirs(os.path.join(data_folder, 'msmarco_base'))
+        os.makedirs(os.path.join(self.data_folder, 'msmarco_base'))
 
         scoreddoctest = data_tools.bm25_rank(queries_test_collection.itertuples(), self.documents_collection.itertuples(),
                              storage_filepath=os.path.join(self.data_folder, 'bm25_test'), top_k=1000,
-                             doc_storage_filepath=os.path.join(data_folder, 'msmarco_base'))
+                             doc_storage_filepath=os.path.join(self.data_folder, 'msmarco_base'))
 
         scoreddocval = data_tools.bm25_rank(queries_val_collection.itertuples(), self.documents_collection.itertuples(),
                              storage_filepath=os.path.join(self.data_folder, 'bm25_val'), top_k=1000,
-                             doc_storage_filepath=os.path.join(data_folder, 'msmarco_base'))
+                             doc_storage_filepath=os.path.join(self.data_folder, 'msmarco_base'))
         self.rerank_collection = pd.concat([scoreddoctest, scoreddocval]).groupby('query_id')
         self.rerank_group = self.rerank_collection.groupby('query_id')
         test_assert = [{q for t in v for q in t} for k, v in self.data.items()]
