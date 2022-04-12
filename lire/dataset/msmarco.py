@@ -251,9 +251,9 @@ class MSMarcoRankingDataset(MSMarcoBaseDataset):
         queries_test_collection = self.queries_collection.loc[[query for topic in self.data['test'] for query in topic]]
         queries_val_collection = self.queries_collection.loc[[query for topic in self.data['val'] for query in topic]]
         
-        os.makedirs(os.path.join(self.data_folder, 'bm25_test'))
-        os.makedirs(os.path.join(self.data_folder, 'bm25_val'))
-        os.makedirs(os.path.join(self.data_folder, 'msmarco_base'))
+        os.makedirs(os.path.join(self.data_folder, 'bm25_test'), exist_ok=True)
+        os.makedirs(os.path.join(self.data_folder, 'bm25_val'), exist_ok=True)
+        os.makedirs(os.path.join(self.data_folder, 'msmarco_base'), exist_ok=True)
 
         scoreddoctest = data_tools.bm25_rank(queries_test_collection.itertuples(), self.documents_collection.itertuples(),
                              storage_filepath=os.path.join(self.data_folder, 'bm25_test'), top_k=1000,
@@ -263,7 +263,7 @@ class MSMarcoRankingDataset(MSMarcoBaseDataset):
                              storage_filepath=os.path.join(self.data_folder, 'bm25_val'), top_k=1000,
                              doc_storage_filepath=os.path.join(self.data_folder, 'msmarco_base'))
         self.rerank_collection = pd.concat([scoreddoctest, scoreddocval]).groupby('query_id')
-        self.rerank_group = self.rerank_collection.groupby('query_id')
+        self.rerank_group = self.rerank_collection
         test_assert = [{q for t in v for q in t} for k, v in self.data.items()]
         assert(len(test_assert[0].intersection(test_assert[1])) == 0)
         assert(len(test_assert[0].intersection(test_assert[2])) == 0)

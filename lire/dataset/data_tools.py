@@ -5,7 +5,7 @@ import json
 
 def bm25_rank(queries_collection, documents_collection, storage_filepath, doc_storage_filepath=None, top_k=1000,
             threads=1):
-    if not os.path.exists(os.path.join(storage_filepath, 'index')):
+    if not os.path.exists(os.path.join(doc_storage_filepath, 'index')):
         # compute the index
         print("Compute the index...")
         documents =\
