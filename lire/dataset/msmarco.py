@@ -183,8 +183,9 @@ class MSMarcoBaseDataset():
 
     def set_queries_index(self, queries_ids):
         self.queries_index = queries_ids
-        #if self.triplets_collection is not None:
-        #    self.queries_index = [query_id for query_id in queries_ids if query_id in self.group_keys]
+        if self.triplets_collection is not None:
+            # ensure that queries have at least one negative sample associated to it
+            self.queries_index = [query_id for query_id in queries_ids if int(query_id) in self.group_keys]
 
 
     def get_queries_index(self):

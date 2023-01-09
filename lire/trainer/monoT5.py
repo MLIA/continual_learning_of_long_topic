@@ -4,8 +4,8 @@ import torch
 import torch.nn
 
 from lire.trainer.lire_experiment import DDPLIReExperiment
-from lire.dataset import scenarios as sc
-from lire.dataset import MSMarco as ms
+# from lire.dataset import scenarios as sc
+from lire.dataset import msmarco as ms
 
 
 from transformers import T5Tokenizer, T5ForConditionalGeneration

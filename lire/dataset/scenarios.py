@@ -4,7 +4,7 @@ import pandas as pd
 import json
 import tqdm
 
-from lire.data_tools.dataset.MSMarco import MSMarcoRankingDataset
+from lire.dataset.msmarco import MSMarcoRankingDataset
 
 from sentence_transformers import SentenceTransformer, util
 from sklearn.cluster import KMeans
