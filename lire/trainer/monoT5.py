@@ -51,6 +51,7 @@ class MonoT5TrainingDataset():
         sample["spdid"] = sample["pdid"][0]
         sample["npdid"] = sample["ndid"][0]
         return sample
+
     def __len__(self):
         return len(self.dataset)
 

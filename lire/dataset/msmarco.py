@@ -141,7 +141,7 @@ class MSMarcoBaseDataset():
         output_dict = {"qid":query_index, "qtxt":query_text, "pdid":documents_index, "pdtxt":documents_text}
         if self.return_negative_docs and self.load_triplets:
             try:
-                negative_documents_index = self.triplets_collection.get_group(query_index)["irrelevant_doc"]
+                negative_documents_index = self.triplets_collection.get_group(int(query_index))["irrelevant_doc"]
 
                 if isinstance(documents_index, str):
                     negative_documents_index = [negative_documents_index]
@@ -157,7 +157,7 @@ class MSMarcoBaseDataset():
                         negative_documents_index =\
                             torch.LongTensor(negative_documents_index)[:self.n_sample_negative].tolist()            
 
-                negative_documents_text = self.documents_collection.loc[negative_documents_index]["text"].tolist()
+                negative_documents_text = self.documents_collection.loc[[str(did) for did in negative_documents_index]]["text"].tolist()
             except KeyError as err:
                 negative_documents_index, negative_documents_text = None, None
             output_dict["ndid"] = negative_documents_index
@@ -173,6 +173,7 @@ class MSMarcoBaseDataset():
 
     def set_n_sample_negative(self, max_negative):
         self.n_sample_negative = max_negative
+        self.set_negative_docs_return(True)
 
     def set_negative_docs_return(self, return_negative_docs):
         if self.return_negative_docs and not self.load_triplets:
@@ -182,8 +183,8 @@ class MSMarcoBaseDataset():
 
     def set_queries_index(self, queries_ids):
         self.queries_index = queries_ids
-        if self.triplets_collection is not None:
-            self.queries_index = [query_id for query_id in queries_ids if query_id in self.group_keys]
+        #if self.triplets_collection is not None:
+        #    self.queries_index = [query_id for query_id in queries_ids if query_id in self.group_keys]
 
 
     def get_queries_index(self):
@@ -247,6 +248,7 @@ class MSMarcoRankingDataset(MSMarcoBaseDataset):
                 df = pd.DataFrame.from_dict(doc_pair_dict).to_csv(data_filename, index=False, sep='\t')
             print("loading triplet")
             self.triplets_collection = pd.read_csv(data_filename, sep='\t', index_col='query_id').groupby('query_id')
+            self.group_keys = set(self.triplets_collection.groups.keys())
        # creating or loading the bm25 relevant documents with by default top1000 for val and top1000 for test
         queries_test_collection = self.queries_collection.loc[[query for topic in self.data['test'] for query in topic]]
         queries_val_collection = self.queries_collection.loc[[query for topic in self.data['val'] for query in topic]]
