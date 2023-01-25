@@ -12,6 +12,23 @@ import pandas as pd
 from hashlib import blake2s
 import ir_datasets
 
+def store_local_msmarco(folder):
+    print("Loading qrels")
+    self.qrels_collection =\
+        pd.DataFrame.from_records(dataset.qrels_iter(),
+                                    columns=['query_id', 'doc_id', 'relevance','iteration'],
+                                    index='query_id')
+    print("Loading documents")
+    self.documents_collection =\
+        pd.DataFrame.from_records(dataset.docs_iter(),
+                                    columns=['doc_id', 'text'],
+                                    index='doc_id')
+    print("Loading queries")
+    self.queries_collection =\
+        pd.DataFrame.from_records(dataset.queries_iter(),
+                                    columns=['query_id', 'text'],
+                                    index='query_id')
+
 class MSMarcoBaseDataset():
     def __init__(self, load_triplets=False, seed=42,  
                  data_folder='$DATA_FOLDER/lire/MSMarco'):
